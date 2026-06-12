@@ -279,7 +279,7 @@ body {
 .rutina-contenedor::after {
     content: '';
     display: block;
-    height: 120px; /* Espacio para el botón sticky */
+    height: 300px; /* Espacio para el botón sticky */
     flex-shrink: 0;
 }
 
