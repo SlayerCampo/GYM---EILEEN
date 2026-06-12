@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Rutina de Amor 💪💖</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- PÁGINA PRINCIPAL -->
+    <div id="pagina-principal" class="pagina activa">
+        <div class="hero">
+            <div class="corazon-animado">💖</div>
+            <h1 class="titulo-principal">Bienvenida, mi amor</h1>
+            <p class="subtitulo">Tu rutina de ejercicios te espera</p>
+        </div>
+
+        <div class="dias-semana">
+            <!-- LUNES - PIERNA -->
+            <div class="dia-card" onclick="abrirDia('lunes')">
+                <div class="dia-icono">🦵</div>
+                <h3>Lunes</h3>
+                <span class="grupo-muscular">Pierna</span>
+                <div class="progreso-dia" id="progreso-lunes"></div>
+            </div>
+
+            <!-- MARTES - ESPALDA, BÍCEPS Y ANTEBRAZO -->
+            <div class="dia-card" onclick="abrirDia('martes')">
+                <div class="dia-icono">🔙</div>
+                <h3>Martes</h3>
+                <span class="grupo-muscular">Espalda, Bíceps</span>
+                <div class="progreso-dia" id="progreso-martes"></div>
+            </div>
+
+            <!-- MIÉRCOLES - ABDOMEN, HIIT Y CARDIO -->
+            <div class="dia-card" onclick="abrirDia('miercoles')">
+                <div class="dia-icono">🔥</div>
+                <h3>Miércoles</h3>
+                <span class="grupo-muscular">Abdomen, HIIT</span>
+                <div class="progreso-dia" id="progreso-miercoles"></div>
+            </div>
+
+            <!-- JUEVES - PIERNA (FEMORAL, GLÚTEO, PANTORRILLA) -->
+            <div class="dia-card" onclick="abrirDia('jueves')">
+                <div class="dia-icono">🍑</div>
+                <h3>Jueves</h3>
+                <span class="grupo-muscular">Pierna, Glúteo</span>
+                <div class="progreso-dia" id="progreso-jueves"></div>
+            </div>
+
+            <!-- VIERNES - PECHO, HOMBRO Y TRÍCEPS -->
+            <div class="dia-card" onclick="abrirDia('viernes')">
+                <div class="dia-icono">💪</div>
+                <h3>Viernes</h3>
+                <span class="grupo-muscular">Pecho, Hombro</span>
+                <div class="progreso-dia" id="progreso-viernes"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PÁGINA DE RUTINA -->
+    <div id="pagina-rutina" class="pagina">
+        <div class="rutina-header">
+            <button class="btn-volver" onclick="volverPrincipal()">← Volver</button>
+            <h2 id="titulo-rutina"></h2>
+        </div>
+
+        <div class="rutina-scroll-container" id="rutina-scroll-container">
+            <div class="rutina-contenedor" id="rutina-contenedor">
+                <!-- Los ejercicios se generan dinámicamente -->
+            </div>
+            
+            <div class="rutina-footer-flujo" id="rutina-footer">
+                <button id="btn-terminar" class="btn-terminar" onclick="terminarRutina()" disabled>
+                    ✅ Terminar Rutina
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CELEBRACIÓN -->
+    <div id="celebracion" class="celebracion oculto">
+        <canvas id="confetti-canvas"></canvas>
+        <div class="mensaje-final">
+            <div class="trofeo">🏆</div>
+            <h2 id="mensaje-celebracion">¡Lo lograste, mi amor! 💕</h2>
+            <div id="mensaje-remoto-celebracion" class="mensaje-remoto-texto"></div>
+            <button class="btn-volver-celebracion" onclick="volverPrincipal()">Volver al inicio</button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

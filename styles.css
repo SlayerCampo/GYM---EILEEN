@@ -1,0 +1,683 @@
+/* ============================================
+   VARIABLES Y CONFIGURACIÓN GLOBAL
+   ============================================ */
+:root {
+    --rosa-pastel: #F4C2C2;
+    --rosa-suave: #FADADD;
+    --rosa-medio: #E8A0BF;
+    --lila-pastel: #E6E6FA;
+    --lavanda: #D8BFD8;
+    --menta: #C1E1C1;
+    --menta-suave: #D4EDDA;
+    --celeste: #B0E0E6;
+    --durazno: #FFDAB9;
+    --crema: #FFF8F0;
+    --blanco: #FFFFFF;
+    --texto-principal: #4A4A4A;
+    --texto-secundario: #7A7A7A;
+    --sombra-suave: 0 4px 20px rgba(0,0,0,0.08);
+    --sombra-hover: 0 8px 30px rgba(0,0,0,0.12);
+    --radio: 20px;
+    --radio-sm: 12px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, var(--crema) 0%, var(--rosa-suave) 50%, var(--lila-pastel) 100%);
+    color: var(--texto-principal);
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* ============================================
+   PÁGINAS
+   ============================================ */
+.pagina {
+    display: none;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    animation: fadeIn 0.5s ease;
+}
+
+.pagina.activa {
+    display: flex;
+    flex-direction: column;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* ============================================
+   PÁGINA PRINCIPAL
+   ============================================ */
+#pagina-principal {
+    align-items: center;
+    justify-content: flex-start;
+    padding: 30px 20px;
+    overflow-y: auto;
+}
+
+.hero {
+    text-align: center;
+    padding: 20px 0 25px;
+    flex-shrink: 0;
+}
+
+.corazon-animado {
+    font-size: 55px;
+    animation: latido 1.5s ease-in-out infinite;
+    margin-bottom: 12px;
+}
+
+@keyframes latido {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+.titulo-principal {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--texto-principal);
+    margin-bottom: 6px;
+    letter-spacing: -0.5px;
+}
+
+.subtitulo {
+    font-size: 0.95rem;
+    color: var(--texto-secundario);
+    font-weight: 300;
+}
+
+/* Días de la semana */
+.dias-semana {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    width: 100%;
+    max-width: 420px;
+    padding-bottom: 20px;
+}
+
+.dia-card {
+    background: var(--blanco);
+    border-radius: var(--radio);
+    padding: 18px 22px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    box-shadow: var(--sombra-suave);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.dia-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 5px;
+    background: linear-gradient(180deg, var(--rosa-medio), var(--lavanda));
+    border-radius: var(--radio) 0 0 var(--radio);
+}
+
+.dia-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--sombra-hover);
+}
+
+.dia-card:active {
+    transform: scale(0.97);
+}
+
+.dia-icono {
+    font-size: 28px;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--rosa-suave);
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.dia-card h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    flex: 1;
+}
+
+.grupo-muscular {
+    background: linear-gradient(135deg, var(--lila-pastel), var(--rosa-suave));
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--texto-principal);
+    flex-shrink: 0;
+}
+
+.progreso-dia {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--menta-suave);
+    border-radius: 0 0 var(--radio) var(--radio);
+}
+
+.progreso-dia::after {
+    content: '';
+    display: block;
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--menta), var(--celeste));
+    border-radius: 0 0 var(--radio) var(--radio);
+    transition: width 0.5s ease;
+}
+
+/* ============================================
+   PÁGINA DE RUTINA
+   ============================================ */
+#pagina-rutina {
+    background: linear-gradient(180deg, var(--crema), var(--lila-pastel));
+}
+
+.rutina-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(12px);
+    flex-shrink: 0;
+    z-index: 10;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.btn-volver {
+    background: var(--blanco);
+    border: none;
+    padding: 8px 14px;
+    border-radius: var(--radio-sm);
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.85rem;
+    cursor: pointer;
+    box-shadow: var(--sombra-suave);
+    transition: all 0.2s;
+    color: var(--texto-principal);
+    flex-shrink: 0;
+}
+
+.btn-volver:hover {
+    background: var(--rosa-suave);
+}
+
+.rutina-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    flex: 1;
+    text-align: center;
+    margin-right: 50px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Scroll container */
+.rutina-scroll-container {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scroll-snap-type: y proximity;
+    -webkit-overflow-scrolling: touch;
+    position: relative;
+    scroll-behavior: smooth;
+}
+
+.rutina-scroll-container::-webkit-scrollbar {
+    width: 4px;
+}
+
+.rutina-scroll-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.rutina-scroll-container::-webkit-scrollbar-thumb {
+    background: var(--rosa-medio);
+    border-radius: 10px;
+}
+
+.rutina-contenedor {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 20px 16px 0;
+}
+
+/* Tarjeta de ejercicio */
+.ejercicio-card {
+    scroll-snap-align: center;
+    min-height: calc(100vh - 120px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px 0;
+}
+
+.ejercicio-inner {
+    background: var(--blanco);
+    border-radius: var(--radio);
+    box-shadow: var(--sombra-suave);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.ejercicio-header {
+    padding: 22px 20px 18px;
+    background: linear-gradient(135deg, var(--rosa-suave), var(--lila-pastel));
+    text-align: center;
+}
+
+.numero-ejercicio {
+    font-size: 0.8rem;
+    color: var(--texto-secundario);
+    margin-bottom: 6px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.nombre-ejercicio {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--texto-principal);
+    line-height: 1.2;
+}
+
+/* Detalles */
+.ejercicio-detalles {
+    display: flex;
+    justify-content: space-around;
+    padding: 18px 15px;
+    background: var(--crema);
+    border-bottom: 1px solid rgba(0,0,0,0.04);
+}
+
+.detalle {
+    text-align: center;
+    flex: 1;
+}
+
+.detalle-label {
+    font-size: 0.7rem;
+    color: var(--texto-secundario);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 6px;
+    font-weight: 500;
+}
+
+.detalle-valor {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--texto-principal);
+}
+
+/* ============================================
+   VIDEO LOCAL - AJUSTE PERFECTO AL RECUADRO
+   ============================================ */
+.video-container {
+    position: relative;
+    width: 100%;
+    height: 280px; /* Altura fija para consistencia */
+    background: linear-gradient(135deg, #f0f0f0, #e8e8e8);
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.video-container video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* 🔑 Mantiene proporción, ajusta al recuadro */
+    background: #000;
+}
+
+/* Placeholder cuando el video está pausado */
+.video-placeholder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--lila-pastel), var(--rosa-suave));
+    color: var(--texto-principal);
+    transition: opacity 0.3s;
+    z-index: 2;
+}
+
+.video-placeholder.oculto {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.video-placeholder span {
+    font-size: 45px;
+    margin-bottom: 10px;
+}
+
+.video-placeholder p {
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* Icono de play centrado */
+.play-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 65px;
+    height: 65px;
+    background: rgba(255,255,255,0.95);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    z-index: 3;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+/* Estado pausado: muestra play */
+.video-container.video-pausado .play-overlay {
+    opacity: 1;
+}
+
+/* Estado reproduciendo: oculta play */
+.video-container.video-reproduciendo .play-overlay {
+    opacity: 0;
+}
+
+/* Indicador de pausa cuando está reproduciendo */
+.pause-hint {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 65px;
+    height: 65px;
+    background: rgba(0,0,0,0.5);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    color: white;
+    z-index: 3;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+}
+
+/* Muestra hint de pausa al tocar */
+.video-container.mostrando-pausa .pause-hint {
+    opacity: 1;
+}
+
+/* Botón check */
+.btn-check-container {
+    padding: 18px 20px;
+    text-align: center;
+}
+
+.btn-check {
+    width: 100%;
+    padding: 16px;
+    border: 2px solid var(--menta);
+    background: var(--blanco);
+    border-radius: var(--radio-sm);
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--texto-principal);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.btn-check:hover {
+    background: var(--menta-suave);
+    transform: scale(1.02);
+}
+
+.btn-check.completado {
+    background: linear-gradient(135deg, var(--menta), var(--celeste));
+    border-color: var(--menta);
+    color: #2d5a2d;
+}
+
+/* Tiempo de descanso */
+.descanso-ejercicios {
+    padding: 18px 20px;
+    background: linear-gradient(135deg, var(--durazno), var(--rosa-pastel));
+    text-align: center;
+}
+
+.descanso-label {
+    font-size: 0.75rem;
+    color: var(--texto-secundario);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 6px;
+    font-weight: 500;
+}
+
+.descanso-tiempo {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--texto-principal);
+}
+
+/* ============================================
+   BOTÓN TERMINAR RUTINA
+   ============================================ */
+.rutina-footer-flujo {
+    padding: 30px 16px 50px;
+    text-align: center;
+    background: transparent;
+    transition: all 0.3s ease;
+}
+
+.rutina-footer-flujo.sticky {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 16px 20px 24px;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(12px);
+    border-top: 1px solid rgba(0,0,0,0.06);
+    z-index: 100;
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
+}
+
+.btn-terminar {
+    background: linear-gradient(135deg, var(--rosa-medio), var(--lavanda));
+    color: var(--blanco);
+    border: none;
+    padding: 18px 50px;
+    border-radius: 50px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: var(--sombra-suave);
+    transition: all 0.3s ease;
+    width: 100%;
+    max-width: 320px;
+}
+
+.btn-terminar:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: var(--sombra-hover);
+}
+
+.btn-terminar:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    background: var(--texto-secundario);
+}
+
+/* ============================================
+   CELEBRACIÓN
+   ============================================ */
+.celebracion {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.88);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.celebracion.oculto {
+    display: none;
+}
+
+#confetti-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.mensaje-final {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 30px;
+    animation: aparecerMensaje 0.8s ease 0.3s both;
+    max-width: 90vw;
+}
+
+@keyframes aparecerMensaje {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.trofeo {
+    font-size: 70px;
+    margin-bottom: 15px;
+    animation: rebote 1s ease infinite;
+}
+
+@keyframes rebote {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+}
+
+.mensaje-final h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.7rem;
+    color: var(--blanco);
+    margin-bottom: 12px;
+    line-height: 1.3;
+}
+
+.mensaje-remoto-texto {
+    font-size: 1rem;
+    color: var(--rosa-suave);
+    margin-bottom: 25px;
+    line-height: 1.6;
+    font-style: italic;
+    max-width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn-volver-celebracion {
+    background: var(--blanco);
+    border: none;
+    padding: 14px 32px;
+    border-radius: 50px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--texto-principal);
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 10px;
+}
+
+.btn-volver-celebracion:hover {
+    transform: scale(1.05);
+    background: var(--rosa-suave);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 380px) {
+    .titulo-principal {
+        font-size: 1.7rem;
+    }
+    
+    .nombre-ejercicio {
+        font-size: 1.4rem;
+    }
+    
+    .detalle-valor {
+        font-size: 1rem;
+    }
+    
+    .video-container {
+        height: 240px;
+    }
+}
+
+@media (min-width: 500px) {
+    .video-container {
+        height: 350px;
+    }
+}
